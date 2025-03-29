@@ -23,3 +23,15 @@
 1
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
+
+const a = parseInt(fileData[0]);
+const b = parseInt(fileData[1]);
+
+console.log(a + b);
+console.log(a - b);
+console.log(a * b);
+// math.trunc 은 소숫점 이하를 제거하는 함수이다.
+console.log(Math.trunc(a / b));
+console.log(a % b);

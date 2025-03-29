@@ -34,3 +34,12 @@
 181720
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
+
+const a = parseInt(fileData[0]);
+const b = parseInt(fileData[1]);
+console.log(a*(b%10))
+console.log(a*(((b%100)-(b%10))/10))
+console.log(a*((b-(b%100))/100))
+console.log(a*b)

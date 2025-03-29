@@ -34,4 +34,21 @@ A와 B가 같은 경우에는 '=='를 출력한다.
 예제 출력 3
 ==
 */
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
+
+const a = parseInt(fileData[0]);
+const b = parseInt(fileData[1]);
+
+function size (){
+  if (a>b){
+    console.log('>')
+  } else if(a<b){
+    console.log('<')
+  } else if(a==b){
+    console.log('==')
+  }
+}
+
+size ();
 

@@ -26,4 +26,17 @@
 예제 출력 2
 0
 */
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
+const a = parseInt(fileData[0]);
+
+function leap (){
+  if( ((a%4)==0 && (a%100)!=0) || (a%400)==0 ){
+    console.log('1')
+  } else{
+    console.log('0')
+    
+  }
+}
+leap ();
