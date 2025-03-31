@@ -44,4 +44,20 @@
 예제 출력 2
 4
 */
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
 
+const a = fileData[0];
+const b = fileData[1];
+
+const where =
+  a > 0 && b > 0
+    ? "1"
+    : a < 0 && b > 0
+    ? "2"
+    : a < 0 && b < 0
+    ? "3"
+    : a > 0 && b < 0
+    ? "4"
+    : 0;
+console.log(where);
