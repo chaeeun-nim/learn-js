@@ -39,3 +39,25 @@ KOI 전자에서는 건강에 좋고 맛있는 훈제오리구이 요리를 간�
 0 13
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
+
+const now = fileData[0].split(" "); // 첫번째줄 데이터 통채로 추출
+
+const h = parseInt(now[0]); // 첫번째줄 첫번째 숫자
+const m = parseInt(now[1]); // 첫번째줄 두번째 숫자
+
+const cookingTime = parseInt(fileData[1]); // 두번째줄 데이터 통채로 추출
+
+const startTime = h * 60 + m; // 시작한시간
+const allTime = h * 60 + m + cookingTime; // 조리시간이 전체 포함된 시간
+
+if (allTime < 1440) {
+  const finishM = allTime % 60;
+  const finishT = (allTime - (allTime % 60)) / 60;
+  console.log(`${finishT} ${finishM}`);
+} else {
+  const finishM = allTime % 60;
+  const finishT = (allTime - (allTime % 60)) / 60 - 24;
+  console.log(`${finishT} ${finishM}`);
+}

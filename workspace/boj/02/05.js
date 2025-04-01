@@ -40,3 +40,26 @@
 22 55
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
+
+const a = parseInt(fileData[0]);
+const b = parseInt(fileData[1]);
+
+const time = a * 60;
+const min = b;
+const allTime = time + min;
+
+function alramTime() {
+  if (allTime >= 45) {
+    const alramT = (allTime - 45 - ((allTime - 45) % 60)) / 60;
+    const alramM = (allTime - 45) % 60;
+    console.log(alramT, alramM);
+  } else if (allTime < 45) {
+    const allTime = time + min + 24 * 60;
+    const alramT = (allTime - 45 - ((allTime - 45) % 60)) / 60;
+    const alramM = (allTime - 45) % 60;
+    console.log(alramT, alramM);
+  }
+}
+alramTime();

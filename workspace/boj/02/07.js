@@ -37,4 +37,22 @@
 예제 출력 3
 600
 */
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
+const a = parseInt(fileData[0]);
+const b = parseInt(fileData[1]);
+const c = parseInt(fileData[2]);
+
+if (a == b && a == c && c == b) {
+  console.log(10000 + a * 1000);
+} else if (a == b && a != c && c != b) {
+  console.log(1000 + a * 100);
+} else if (a != b && a == c && c != b) {
+  console.log(1000 + a * 100);
+} else if (a != b && a != c && c == b) {
+  console.log(1000 + c * 100);
+} else {
+  const max = Math.max(a, b, c);
+  console.log(max * 100);
+}
