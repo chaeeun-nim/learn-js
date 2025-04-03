@@ -29,3 +29,16 @@
 7
 */
 
+let fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
+
+const now = fileData[0].split(" "); // 첫번째줄 데이터 통채로 추출
+let first = parseInt(now[0]); // 첫번째줄 첫번째 숫자
+
+for(let i = 1; i <= first; i++){
+  let lines= fileData[i].split(" ");
+  let k = parseInt(lines[0]);
+  let j = parseInt(lines[1]);
+  console.log(k+j);
+}
+

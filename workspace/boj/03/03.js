@@ -19,3 +19,12 @@ n이 주어졌을 때, 1부터 n까지 합을 구하는 프로그램을 작성�
 6
 */
 
+let fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" "); // 입력받기
+const a = parseInt(fileData[0]);
+let sum = 0;
+for(let i = 0; i <= a; i++){
+  sum += i;
+}
+console.log(sum)
+

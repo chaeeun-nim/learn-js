@@ -27,4 +27,12 @@
 17
 7
 */
+let fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
 
+for (let i = 0; i < fileData.length; i++) {
+  let floor = fileData[i].split(" "); // 첫번째줄 데이터 통채로 추출
+  let a = parseInt(floor[0]); // 첫 줄에 테스트케이스의 개수 T
+  let b = parseInt(floor[1]); // 첫 줄에 테스트케이스의 개수 T
+  console.log(a + b);
+}

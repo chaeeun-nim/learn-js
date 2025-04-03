@@ -29,3 +29,19 @@ Case #4: 9 + 8 = 17
 Case #5: 5 + 2 = 7
 */
 
+let fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
+const floor1 = fileData[0].split(" "); // 첫번째줄 데이터 통채로 추출
+let t = parseInt(floor1[0]); // 첫 줄에 테스트케이스의 개수 T
+let text = "";
+let k = 0;
+
+for (let i = 1; i <= t; i++) {
+  k++;
+  let floori = fileData[i].split(" "); // 첫번째줄 데이터 통채로 추출
+  let a = parseInt(floori[0]);
+  let b = parseInt(floori[1]);
+  text += `Case #${k}: ${a} + ${b} = ${a + b}` + "\n";
+}
+
+console.log(text);

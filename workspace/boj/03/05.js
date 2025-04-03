@@ -47,4 +47,13 @@ long int
 예제 출력 2
 long long long long long int
 */
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
+const a = parseInt(fileData[0]) / 4;
+let int = "int";
+let long = "";
+for (let i = 0; i < a; i++) {
+  long += "long ";
+}
+console.log(long + int);

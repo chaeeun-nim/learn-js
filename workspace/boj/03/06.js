@@ -51,3 +51,16 @@ Python을 사용하고 있다면, input 대신 sys.stdin.readline을 사용할 �
 2000
 */
 
+let fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
+const floor1 = fileData[0].split(" "); // 첫번째줄 데이터 통채로 추출
+let t = parseInt(floor1[0]); // 첫 줄에 테스트케이스의 개수 T
+let text = "";
+
+for (let i = 1; i <= t; i++) {
+  let floori = fileData[i].split(" "); // 두번째줄 데이터 통채로 추출
+  let a = parseInt(floori[0]);
+  let b = parseInt(floori[1]);
+  text += a + b + "\n";
+}
+console.log(text);

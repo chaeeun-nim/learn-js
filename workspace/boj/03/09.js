@@ -22,4 +22,16 @@
 ****
 *****
 */
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
+const a = parseInt(fileData[0]);
+
+let star = "";
+for (let i = 0; i < a; i++) {
+  for (let k = 0; k <= i; k++) {
+    star += "*";
+  }
+  console.log(star);
+  star = "";
+}
