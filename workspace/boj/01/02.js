@@ -17,13 +17,28 @@
 
 예제 출력 1
 3
+* 
 */
 
-const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" ");
-// console.log(fileData);
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  console.log(data.a + data.b);
+}
+main();
 
-const a = parseInt(fileData[0]);
-const b = parseInt(fileData[1]);
+/**
+ * 한줄에 입력된 입력값을 추출하는 함수
+ * @return {object} - a,b 입력값이 저장된 객체
+ */
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
-console.log(a + b);
+  const result = new Object();
+
+  result.a = parseInt(fileData[0]);
+  result.b = parseInt(fileData[1]);
+
+  return result;
+}
