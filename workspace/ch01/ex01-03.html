@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      console.log("hello javascript! (인라인 1번)");
+      //html 코드가 파싱이 완료된 이후에 발생
+      window.addEventListener("load", function () {
+        console.log("언제될까욥?");
+        // 객체에 정의한 함수는 메소드 라고 한다.
+        const btn = document.querySelector("button");
+        btn.addEventListener("click", function () {
+          console.log("버튼클릭클릭22");
+          const imgE = document.querySelector("img");
+          imgE.src =
+            "https://i.namu.wiki/i/1G1Nc_PEsk2rbiAM4G0OfhNr772QM8oWtmBX-ol2Rsy7_ySc6b0mUUxzOn7Zp3pTi-9VgzTTc5AYz8Vg4lj90Q.webp";
+        });
+      });
+
+      //버튼에 클릭 이벤트 추가
+    </script>
+    <script src="ex01-03.js"></script>
+  </head>
+  <body>
+    <h1>어서와, 자바스크립트는 좀 익숙해졌지? -3</h1>
+    <button>클릭!</button><br />
+    <br />
+    <img
+      width="240"
+      height="234"
+      src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F4vaba%2FbtscKmQxvUn%2FZMtFGMF7Knbvac7MDCGKDk%2Fimg.png"
+      alt="미묘한표정으로 어서와 라고 말하는 이승철"
+    />
+    <script>
+      console.log("hello javascript! (인라인 4번)");
+      console.log("hello javascript! (인라인 1번)");
+      // 객체에 정의한 함수는 메소드 라고 한다.
+      const btn = document.querySelector("button");
+      btn.addEventListener("click", function () {
+        console.log("버튼클릭1");
+      });
+
+      //버튼에 클릭 이벤트 추가
+    </script>
+  </body>
+</html>
