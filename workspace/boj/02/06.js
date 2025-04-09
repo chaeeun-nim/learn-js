@@ -39,6 +39,49 @@ KOI 전자에서는 건강에 좋고 맛있는 훈제오리구이 요리를 간�
 0 13
 */
 
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  const h = data[0][0];
+  const m = data[0][1];
+  const c = data[1][0];
+
+  const totalMin = (h * 60 + m + c) % (60 * 24);
+
+  const result = {
+    h: Math.floor(totalMin / 60),
+    m: totalMin % 60,
+  };
+  console.log(result.h, result.m);
+}
+main();
+
+/**
+ * 표준 입력장치(콘솔)에서 두 줄로 입력된 줄당 en 건의 데이터를 읽어서 숫자로 변환한 후
+ * 객체에 a, b 속성으로 저장하여 반환한다.
+ * @returns {[]} 2차원 배열로 리턴하겠다!
+ *
+ */
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+
+  const result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const row = arr[i];
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
+
+  return result;
+}
+
+/*
 const fs = require("fs");
 const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
 
@@ -61,3 +104,4 @@ if (allTime < 1440) {
   const finishT = (allTime - (allTime % 60)) / 60 - 24;
   console.log(`${finishT} ${finishM}`);
 }
+*/

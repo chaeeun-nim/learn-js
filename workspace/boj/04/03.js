@@ -23,3 +23,38 @@ N개의 정수가 주어진다.
 7 35
 */
 
+main();
+function main() {
+  const data = getData();
+  //Data에서 값을 꺼내서 문제 해결하는 코드 작성
+  let max = parseInt(data.num[0]);
+  let min = parseInt(data.num[0]);
+
+  for (let i = 1; i < data.n; i++) {
+    if (parseInt(data.num[i]) >= max) {
+      max = parseInt(data.num[i]);
+    }
+    if (parseInt(data.num[i]) <= min) {
+      min = parseInt(data.num[i]);
+    }
+  }
+  console.log(min, max);
+}
+
+/**
+ * 두줄에 입력된 두개의 입력값을 추출하는 함수, 두 건의 데이터를 읽어서 순자를 변환후
+ * 객체에 a,b 속성으로 저장하여 반환한다.
+ * @return {object} - a,b 입력값이 저장된 객체
+ */
+function getData() {
+  const fs = require("fs");
+  // 입력값 예시 : 10 20
+  const fileData = fs.readFileSync(0).toString().trim().split("\n");
+  const first = fileData[0].toString().trim().split(" ");
+
+  const result = new Object();
+  result.n = first[0];
+  result.x = first[1];
+  result.num = fileData[1].toString().trim().split(" ");
+  return result;
+}

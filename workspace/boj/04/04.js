@@ -184,3 +184,16 @@
 1
 */
 
+const fs = require("fs");
+const fileData = fs.readFileSync(0).toString().trim().split("\n");
+const c = fileData.length;
+let max = fileData[0];
+let where = 0;
+
+for (let i = 0; i < c; i++) {
+  if (fileData[i] >= max) {
+    max = parseInt(fileData[i]);
+    where = parseInt(i + 1);
+  }
+}
+console.log(max + "\n" + where);
