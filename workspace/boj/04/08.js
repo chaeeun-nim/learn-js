@@ -3,6 +3,8 @@
 설명: 배열을 활용하여 서로 다른 값의 개수를 찾는 문제
 제출: https://www.acmicpc.net/submit/3052
 
+TODO 다시한번 풀어보기
+
 문제
 두 자연수 A와 B가 있을 때, A%B는 A를 B로 나눈 나머지 이다. 
 예를 들어, 7, 14, 27, 38을 3으로 나눈 나머지는 1, 2, 0, 2이다. 
@@ -55,7 +57,40 @@
 83
 84
 85
+
+
 예제 출력 3 
 6
 */
 
+function main() {
+  const data = getData();
+  let result = [];
+  let count = [];
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  for (let i = 0; i < data.length; i++) {
+    result.push(data[i] % 42);
+  }
+  for (let i of result) {
+    if (count.indexOf(i) === -1) {
+      count.push(i);
+    }
+  }
+  console.log(count.length);
+}
+main();
+function getData() {
+  const fileData = require("fs").readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr.length === 1 ? rowArr[0] : rowArr);
+  }
+
+  return result.length === 1 ? result[0] : result;
+}

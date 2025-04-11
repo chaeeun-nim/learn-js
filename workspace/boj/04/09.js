@@ -130,3 +130,39 @@ M번 바구니의 순서를 역순으로 만든 다음, 바구니에 적혀있�
 6 7 3 2 1 10 9 8 4 5
 */
 
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  let baket = [];
+  let arr = [];
+  // 바구니 만들어서 안에 공넣기
+  for (let i = 1; i <= data[0][0]; i++) {
+    baket.push(i);
+  }
+  for (let k = 1; k <= data[0][1]; k++) {
+    let a = data[k][0] - 1;
+    let b = data[k][1];
+    arr = baket.slice(a, b);
+    arr.reverse();
+    for (let s = 0; s < arr.length; s++) {
+      baket[a + s] = arr[s];
+    }
+  }
+  console.log(baket.join(" "));
+}
+main();
+function getData() {
+  const fileData = require("fs").readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr.length === 1 ? rowArr[0] : rowArr);
+  }
+
+  return result.length === 1 ? result[0] : result;
+}

@@ -26,3 +26,32 @@ OO
 AB
 */
 
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  for (let i = 1; i <= data[0]; i++) {
+    if (data[i].length == 1) {
+      console.log(data[i] + data[i]);
+    } else {
+      let a = data[i][0];
+      let b = data[i].slice(data[i].length - 1, data[i].length);
+      console.log(`${a}${b}`);
+    }
+  }
+}
+main();
+function getData() {
+  const fileData = require("fs").readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.trim().split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr.length === 1 ? rowArr[0] : rowArr);
+  }
+
+  return result.length === 1 ? result[0] : result;
+}
