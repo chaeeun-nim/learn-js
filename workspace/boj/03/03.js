@@ -19,12 +19,30 @@ n이 주어졌을 때, 1부터 n까지 합을 구하는 프로그램을 작성�
 6
 */
 
-let fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" "); // 입력받기
-const a = parseInt(fileData[0]);
-let sum = 0;
-for(let i = 0; i <= a; i++){
-  sum += i;
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  const n = data[0][0];
+  let sum = 0;
+  for (let i = 0; i <= n; i++) {
+    sum += i;
+  }
+  console.log(sum);
 }
-console.log(sum)
+main();
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
 
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
+
+  return result;
+}

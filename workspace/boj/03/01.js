@@ -27,17 +27,28 @@ N을 입력받은 뒤, 구구단 N단을 출력하는 프로그램을 작성하�
 2 * 9 = 18
 */
 
-const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" ");
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  let a = data[0][0];
+  for (let i = 1; i <= 9; i++) {
+    console.log(`${a} * ${i} = ${a * i}`);
+  }
+}
+main();
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
 
-const a = parseInt(fileData[0]);
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
 
-console.log(`${a} * 1 = ` + 1 * a);
-console.log(`${a} * 2 = ` + 2 * a);
-console.log(`${a} * 3 = ` + 3 * a);
-console.log(`${a} * 4 = ` + 4 * a);
-console.log(`${a} * 5 = ` + 5 * a);
-console.log(`${a} * 6 = ` + 6 * a);
-console.log(`${a} * 7 = ` + 7 * a);
-console.log(`${a} * 8 = ` + 8 * a);
-console.log(`${a} * 9 = ` + 9 * a);
+  return result;
+}

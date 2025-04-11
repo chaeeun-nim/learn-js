@@ -27,21 +27,33 @@ Case #2: 2 + 3 = 5
 Case #3: 3 + 4 = 7
 Case #4: 9 + 8 = 17
 Case #5: 5 + 2 = 7
+
 */
 
-let fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
-const floor1 = fileData[0].split(" "); // 첫번째줄 데이터 통채로 추출
-let t = parseInt(floor1[0]); // 첫 줄에 테스트케이스의 개수 T
-let text = "";
-let k = 0;
+function main() {
+  const data = getData(); //[ [ 5 ], [ 1, 1 ], [ 2, 3 ], [ 3, 4 ], [ 9, 8 ], [ 5, 2 ] ]
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
 
-for (let i = 1; i <= t; i++) {
-  k++;
-  let floori = fileData[i].split(" "); // 첫번째줄 데이터 통채로 추출
-  let a = parseInt(floori[0]);
-  let b = parseInt(floori[1]);
-  text += `Case #${k}: ${a} + ${b} = ${a + b}` + "\n";
+  for (let i = 1; i < data.length; i++) {
+    console.log(
+      `Case #${i}: ${data[i][0]} + ${data[i][1]} = ${data[i][0] + data[i][1]}`
+    );
+  }
 }
+main();
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
 
-console.log(text);
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
+
+  return result;
+}

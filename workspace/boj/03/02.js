@@ -29,16 +29,29 @@
 7
 */
 
-let fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
-
-const now = fileData[0].split(" "); // 첫번째줄 데이터 통채로 추출
-let first = parseInt(now[0]); // 첫번째줄 첫번째 숫자
-
-for(let i = 1; i <= first; i++){
-  let lines= fileData[i].split(" ");
-  let k = parseInt(lines[0]);
-  let j = parseInt(lines[1]);
-  console.log(k+j);
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  let result = 0;
+  for (let i = 1; i < data.length; i++) {
+    result = data[i][0] + data[i][1];
+    console.log(result);
+  }
 }
+main();
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
 
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
+
+  return result;
+}

@@ -140,25 +140,35 @@ No
 둘째 줄에는 영수증에 적힌 구매한 물건의 종류의 수 N이 주어진다.
 이후 N개의 줄에는 각 물건의 가격 a와 개수 b가 공백을 사이에 두고 주어진다.
 */
-let fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
-
-const floor1 = fileData[0].split(" "); // 첫번째줄 데이터 통채로 추출
-const floor2 = fileData[1].split(" "); // 두번째줄 데이터 통채로 추출
-
-let x = parseInt(floor1[0]); // 전체 물건의 금액
-let n = parseInt(floor2[0]); // 물건의 갯수
-let all = 0;
-
-for (let i = 3; i <= n + 2; i++) {
-  let line = fileData[i - 1].split(" "); // 물건 갯수, 가격이 든 줄 추출
-  let cost = parseInt(line[0]); // 물건의 가격
-  let num = parseInt(line[1]); // 물건의 갯수
-  let sum = cost * num; // 한물건의 가격 합
-  all += sum;
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  let x = data[0][0];
+  let n = data[1][0];
+  let money = 0;
+  for (let i = 2; i < 2 + n; i++) {
+    money += data[i][0] * data[i][1];
+  }
+  if (money == x) {
+    console.log("Yes");
+  } else {
+    console.log("No");
+  }
 }
-if (all == x) {
-  console.log("Yes");
-} else {
-  console.log("No");
+main();
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
+
+  return result;
 }

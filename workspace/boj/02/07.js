@@ -37,22 +37,40 @@
 예제 출력 3
 600
 */
-const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" ");
 
-const a = parseInt(fileData[0]);
-const b = parseInt(fileData[1]);
-const c = parseInt(fileData[2]);
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  const a = data[0][0];
+  const b = data[0][1];
+  const c = data[0][2];
 
-if (a == b && a == c && c == b) {
-  console.log(10000 + a * 1000);
-} else if (a == b && a != c && c != b) {
-  console.log(1000 + a * 100);
-} else if (a != b && a == c && c != b) {
-  console.log(1000 + a * 100);
-} else if (a != b && a != c && c == b) {
-  console.log(1000 + c * 100);
-} else {
-  const max = Math.max(a, b, c);
-  console.log(max * 100);
+  let point = 0;
+  if (a === b && a === c) {
+    point = 10000 + a * 1000;
+  } else if (a === b || b === c) {
+    point = 1000 + 100 * b;
+  } else if (a === c) {
+    point = 1000 + 100 * a;
+  } else {
+    point = Math.max(a, b, c) * 100;
+  }
+  console.log(point);
+}
+main();
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
+
+  return result;
 }

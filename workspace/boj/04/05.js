@@ -35,5 +35,54 @@
 예제 출력 1 
 1 2 1 1 0
 
-TODO 모르는문제. 도데체 어떻게 품?
+예제 입력 1 
+4 3
+1 2 2
+2 3 4
+2 2 1
+예제 출력 1 
+ 2 1 4 0 
+
+
 */
+
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  const n = data[0][0];
+
+  let result = new Array(n).fill(0);
+
+  for (let i = 1; i < data.length; i++) {
+    const rowArr = data[i];
+    const x = rowArr[0];
+    const y = rowArr[1];
+    const z = rowArr[2];
+
+    for (let k = x; k <= y; k++) {
+      result[k - 1] = z;
+    }
+  }
+  console.log(result.join(" "));
+
+  const srtresult = result.join(" ");
+  console.log(srtresult.split(" "));
+}
+
+main();
+
+function getData() {
+  const fileData = require("fs").readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr.length === 1 ? rowArr[0] : rowArr);
+  }
+
+  return result.length === 1 ? result[0] : result;
+}

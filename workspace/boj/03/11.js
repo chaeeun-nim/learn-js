@@ -29,16 +29,30 @@
 17
 7
 */
-let fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split("\n"); // 일단 줄단위로 자르기..
-
-for (let i = 0; true; i++) {
-  let floor = fileData[i].split(" "); // 첫번째줄 데이터 통채로 추출
-  let a = parseInt(floor[0]); // 첫 줄에 테스트케이스의 개수 T
-  let b = parseInt(floor[1]); // 첫 줄에 테스트케이스의 개수 T
-  if (a == 0 && b == 0) {
-    break;
-  } else {
-    console.log(a + b);
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  for (let i = 0; i < data.length; i++) {
+    let a = data[i][0];
+    let b = data[i][1];
+    if (!(a == 0 && b == 0)) {
+      console.log(a + b);
+    }
   }
+}
+main();
+function getData() {
+  const fileData = require("fs").readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr.length === 1 ? rowArr[0] : rowArr);
+  }
+
+  return result.length === 1 ? result[0] : result;
 }

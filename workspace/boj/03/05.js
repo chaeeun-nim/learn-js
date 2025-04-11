@@ -47,13 +47,29 @@ long int
 예제 출력 2
 long long long long long int
 */
-const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" ");
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  const bytes = data[0][0];
+  let longTimes = bytes / 4;
+  let result = "long ".repeat(longTimes);
 
-const a = parseInt(fileData[0]) / 4;
-let int = "int";
-let long = "";
-for (let i = 0; i < a; i++) {
-  long += "long ";
+  console.log(result + "int");
 }
-console.log(long + int);
+main();
+function getData() {
+  const fs = require("fs");
+  const fileData = fs.readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr);
+  }
+
+  return result;
+}

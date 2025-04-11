@@ -23,21 +23,28 @@
  ****
 *****
 */
-const fs = require("fs");
-const fileData = fs.readFileSync(0).toString().trim().split(" ");
-
-const a = parseInt(fileData[0]);
-
-let star = "";
-let hall = "";
-for (let i = 0; i < a; i++) {
-  star = "";
-  hall = "";
-  for (let k = 0; k <= i; k++) {
-    star += "*";
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  for (let i = 1; i <= data; i++) {
+    let o = " ".repeat(data - i);
+    let star = "*".repeat(i);
+    console.log(o + star);
   }
-  for (let p = 0; p <= a - i - 2; p++) {
-    hall += " ";
+}
+main();
+function getData() {
+  const fileData = require("fs").readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    for (let k = 0; k < rowArr.length; k++) {
+      rowArr[k] = isNaN(rowArr[k]) ? rowArr[k] : parseInt(rowArr[k]);
+    }
+    result.push(rowArr.length === 1 ? rowArr[0] : rowArr);
   }
-  console.log(hall + star);
+
+  return result.length === 1 ? result[0] : result;
 }
