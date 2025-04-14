@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쇼핑목록</title>
+  </head>
+  <body>
+    <h1>쇼핑목록</h1>
+    <p>마트에서 사야할 목록</p>
+    <ul id="purchasses" class="list">
+      <li>두부</li>
+      <li>계란</li>
+      <li>라면</li>
+      <li>햄스터</li>
+    </ul>
+    <script src="./ex05-01-02.js" defer></script>
+    <script src="./ex05-01-03.js" defer></script>
+    <script src="./ex05-01-04.js" defer></script>
+    <!-- <script>
+      
+      const shoppingList = document.getElementsByClassName("list")[0];
+      console.dir(shoppingList);
+
+      //  제일 먼저 구매해야할 항목은 무엇인가?
+      const liList = shoppingList.getElementsByTagName("li");
+      // console.log(liList);
+      const firstli = shoppingList.firstElementChild;
+      console.log(firstli);
+      const firstText = firstli.lastChild;
+      console.log(firstText.nodeValue);
+      firstli.firstChild.nodeValue = "양파";
+      console.log(`제일 먼저 살 물건 : ${firstli.firstChild.nodeValue}`);
+
+      let findli = liList[0];
+      for (let i = 0; i < liList.length; i++) {
+        findli = liList[i];
+      }
+      console.log(`마지막 사야할 물건 : ${findli.firstChild.nodeValue}`);
+
+      let css = document.querySelector(".list > li:last-child").firstChild
+        .nodeValue;
+      console.log(`마지막 사야할 물건2 : ${css}`);
+    </script> -->
+  </body>
+</html>

@@ -37,3 +37,26 @@ N개의 숫자가 공백 없이 쓰여있다. 이 숫자를 모두 합해서 출
 46
 */
 
+function main() {
+  const data = getData();
+  // data에서 값을 꺼내서 문제 해결하는 코드 작성
+  let numbers = data[1].toString();
+  let num = 0;
+  for (let i = 0; i < data[0]; i++) {
+    num += parseInt(numbers[i]);
+  }
+  console.log(num);
+}
+main();
+function getData() {
+  const fileData = require("fs").readFileSync(0).toString();
+  const arr = fileData.trim().split("\n");
+  const result = [];
+
+  for (let row of arr) {
+    const rowArr = row.split(" ");
+    result.push(rowArr.length === 1 ? rowArr[0] : rowArr);
+  }
+
+  return result.length === 1 ? result[0] : result;
+}
