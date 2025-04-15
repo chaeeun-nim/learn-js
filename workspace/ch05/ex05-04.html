@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쇼핑목록</title>
+    <script></script>
+  </head>
+  <body>
+    <h1>이벤트 등록 방식</h1>
+    <div>
+      <button onclick="console.log('눌렀지!');">눌러보쇼</button>
+    </div>
+
+    <script>
+      const btn = document.querySelector("button");
+
+      // 이벤트 등록방법 1 : dom레벨 0 (비표준방식)
+      btn.onclick = function () {
+        console.log("눌렀음");
+      };
+      btn.onclick = function () {
+        console.log("눌렀네?");
+      };
+
+      // 이벤트 등록방법 3 : dom레벨 2 (표준방식)
+      btn.addEventListener("click", function () {
+        console.log("눌렀군");
+      });
+      btn.addEventListener("click", function () {
+        console.log("눌렀소");
+      });
+    </script>
+  </body>
+</html>
