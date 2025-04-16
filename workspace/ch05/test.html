@@ -8,6 +8,8 @@
   <body>
     <header>
       <h1>페이지 제목</h1>
+      <button id="btn1">li추가하기</button>
+      <button id="btn2">인간 소개하기</button>
       <nav>
         <ul>
           <li><a href="#">홈</a></li>
@@ -19,7 +21,7 @@
     <main>
       <section id="intro">
         <h2>소개 섹션</h2>
-        <p>안녕하세요. 소개 섹션입니다.</p>
+        <p>안녕하세요. 송채은 입니다.</p>
       </section>
       <section id="content">
         <h2>본문</h2>
@@ -34,16 +36,35 @@
     </footer>
     <script>
       // 여기에 구현해보세요
-      const introH2 = document.querySelector("#intro > h2");
-      const introP = document.querySelector("#intro > p");
-      console.log(`소개 제목 : ${introH2.innerHTML}`);
-      console.log(`소개 본문 : ${introP.innerHTML}`);
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
 
-      const cardTitle = document.querySelector(".card > h3");
-      console.log(`카드제목 : ${cardTitle.innerHTML}`);
+      btn1.addEventListener("click", function () {
+        const menu = document.querySelector("nav> ul");
 
-      const call = document.querySelector("ul > li:last-child > a");
-      console.log(`연락처 : ${call.innerHTML}`);
+        const creatLi = document.createElement("li");
+        const creatA = document.createElement("a");
+
+        creatA.href = "#";
+        creatA.textContent = "고객지원";
+
+        creatLi.appendChild(creatA);
+        menu.appendChild(creatLi);
+      });
+
+      const arr = ["최승균", "김준오", "박형석", "유시원", "차형주", "송채은"];
+      const result = document.querySelector("#intro > p");
+      result.textContent = `안녕하세요. ${arr[0]} 입니다.`;
+      let i = 1;
+
+      btn2.addEventListener("click", function () {
+        result.textContent += `안녕하세요. ${arr[i]} 입니다.`;
+        i += 1;
+        if (i >= arr.length) {
+          i = 0;
+        }
+        console.log(i);
+      });
     </script>
   </body>
 </html>

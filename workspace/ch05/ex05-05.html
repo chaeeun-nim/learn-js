@@ -16,25 +16,25 @@
             <li>
               <h2>쇼핑 목록</h2>
               <div class="todoinput">
-                <input type="text" autofocus />
-                <button type="button">추가</button>
+                <input type="text" autofocus onkeyup="handleKeyup(event)" />
+                <button type="button" onclick="handleAdd()">추가</button>
               </div>
               <ul class="todolist">
-                <li>
+                <!-- <li data-no="1">
                   <span>1</span>
                   <span><s>샘플1</s></span>
                   <button type="button">삭제</button>
                 </li>
-                <li>
+                <li data-no="2">
                   <span>2</span>
                   <span>샘플2</span>
                   <button type="button">삭제</button>
                 </li>
-                <li>
+                <li data-no="3">
                   <span>3</span>
                   <span>샘플3</span>
                   <button type="button">삭제</button>
-                </li>
+                </li> -->
               </ul>
             </li>
           </ul>
@@ -56,14 +56,117 @@
         </li>
         */
 
-        //할일추가
-        function addItem(title) {}
+        // <li> 요소 생성 (할 일 하나의 전체 묶음)
+        const liElem = document.createElement("li");
 
-        // 완료/미완료 처리
-        function toggleDone(no) {}
+        // 번호 표시용 <span> 요소 생성
+        const noElem = document.createElement("span");
 
-        // 할일 삭제
-        function deletItem(no) {}
+        // 할 일 제목 표시용 <span> 요소 생성
+        const titleElem = document.createElement("span");
+
+        // 삭제 버튼 <button> 요소 생성
+        const deletElem = document.createElement("button");
+
+        // 각각에 들어갈 텍스트 노드 생성
+        const noTxt = document.createTextNode(item.no); // 번호 텍스트
+        const titleTxt = document.createTextNode(item.title); // 할 일 제목 텍스트
+        const deletTxt = document.createTextNode("삭제"); // 버튼 텍스트
+
+        // 텍스트 노드를 해당 요소에 붙이기
+        noElem.appendChild(noTxt); // 번호 → <span>
+        titleElem.appendChild(titleTxt); // 제목 → <span>
+        deletElem.setAttribute("type", "button"); // 버튼 타입 명시
+        titleElem.setAttribute("tabindex", 0); // 완료/미완료처리를 위한 탭포커싱
+        deletElem.appendChild(deletTxt); // "삭제" → <button>
+
+        liElem.appendChild(noElem);
+        liElem.appendChild(titleElem);
+        liElem.appendChild(deletElem);
+
+        // 커스텀 속성 추가
+        liElem.dataset.no = item.no;
+        liElem.dataset.done = item.done;
+
+        // 삭제 이벤트
+        deletElem.setAttribute("onclick", `deletItem(${item.no})`);
+
+        // 완료미완료 차이
+        titleElem.setAttribute("onclick", `toggleDone(${item.no})`);
+
+        deletElem.addEventListener("click", function (event) {
+          // const btn = event.target;
+          // const liNode = btn.closest("li");
+          // deletItem(liNode.dataset.no);
+        });
+
+        return liElem;
+      }
+
+      // 추가 버튼 클릭이벤트 핸들러
+      function handleAdd() {
+        const inputElem = document.querySelector(".todoinput > input");
+        if (inputElem.value.trim() !== "") {
+          addItem(inputElem.value.trim()); // 빈공백이 아닐때만 addItem 함수 실행
+          inputElem.value = ""; // input 값 초기화
+          inputElem.focus(); // 추가 버튼 클릭이후 포커스이동
+        }
+      }
+
+      //엔터 키를 눌렀을때 처리할 이벤트 핸들러
+      function handleKeyup(event) {
+        // 키보드 정보를 가지고 있는 event 객체
+        if (event.key === "Enter") {
+          handleAdd();
+        }
+      }
+
+      //할일추가
+      function addItem(title) {
+        const todoList = document.querySelector(".todolist");
+
+        const item = {
+          no: todoList.children.length + 1,
+          // title: title, //속성값을 담는 변수가 속성명과 일치 할 경우, 속성값 생략 가능하다.
+          title,
+          done: false,
+        };
+        const todoLi = getTodoItemElem(item);
+        console.log(todoLi);
+        todoList.appendChild(todoLi);
+      }
+
+      // 완료/미완료 처리
+      function toggleDone(no) {
+        const targetli = document.querySelector(
+          `.todolist > li[data-no="${no}"]`
+        );
+        const targetSpan = targetli.childNodes[1];
+        const defaultText = targetSpan.textContent;
+        const targetDone = targetli.dataset.done;
+        const creatText = document.createTextNode(defaultText);
+        const sElem = document.createElement("s");
+
+        console.log(targetDone);
+        if (targetDone == "false") {
+          targetli.dataset.done = "true";
+          targetSpan.textContent = "";
+          sElem.appendChild(creatText);
+          targetSpan.appendChild(sElem);
+        } else {
+          console.log("불통");
+          targetli.dataset.done = "false";
+          targetSpan.textContent = "";
+          targetSpan.appendChild(creatText);
+        }
+      }
+
+      // 할일 삭제
+      function deletItem(no) {
+        const targetli = document.querySelector(
+          `.todolist > li[data-no="${no}"]`
+        );
+        targetli.remove();
       }
     </script>
   </body>
