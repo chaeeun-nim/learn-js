@@ -92,12 +92,18 @@
         deletElem.setAttribute("onclick", `deletItem(${item.no})`);
 
         // 완료미완료 차이
-        titleElem.setAttribute("onclick", `toggleDone(${item.no})`);
+        // titleElem.setAttribute("onclick", `toggleDone(${item.no})`);
 
         deletElem.addEventListener("click", function (event) {
           // const btn = event.target;
           // const liNode = btn.closest("li");
           // deletItem(liNode.dataset.no);
+        });
+
+        titleElem.addEventListener("click", function (event) {
+          const btn = event.target;
+          const liNode = btn.closest("li");
+          toggleDone(liNode.dataset.no);
         });
 
         return liElem;
@@ -136,7 +142,8 @@
         todoList.appendChild(todoLi);
       }
 
-      // 완료/미완료 처리
+      // 완료/미완료 처리 내가 혼자한버전
+      /*
       function toggleDone(no) {
         const targetli = document.querySelector(
           `.todolist > li[data-no="${no}"]`
@@ -159,6 +166,31 @@
           targetSpan.textContent = "";
           targetSpan.appendChild(creatText);
         }
+      }
+        */
+
+      // 수업버전
+      function toggleDone(no) {
+        const targetli = document.querySelector(
+          `.todolist > li[data-no="${no}"]`
+        );
+        const done = targetli.dataset.done === "true";
+        const titleEl = targetli.querySelector("span:last-of-type");
+        const text = titleEl.textContent;
+        if (done) {
+          // done이 참일때 -> 취소선 빼~기
+          console.log("참입니다");
+          // titleEl.firstChild.remove();
+          titleEl.textContent = text;
+          // titleEl.appendChild(text);
+        } else {
+          // done이 거짓일때 -> 취소선넣기
+          console.log("그~짓 입니다");
+          const sEl = document.createElement("s");
+          sEl.appendChild(titleEl.firstChild);
+          titleEl.appendChild(sEl);
+        }
+        targetli.dataset.done = !done;
       }
 
       // 할일 삭제

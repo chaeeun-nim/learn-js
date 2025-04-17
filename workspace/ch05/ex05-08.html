@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+    <style>
+      /* CSS 클래스 정의 */
+      .pad100 {
+        padding: 100px;
+      }
+      .size30 {
+        font-size: 30px;
+      }
+      .line-through {
+        text-decoration: line-through; /* 취소선 스타일 */
+      }
+      ul {
+        margin: 10px;
+        border: 3px solid red;
+      }
+
+      li {
+        margin: 10px;
+        background-color: pink;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const list = document.querySelector("ul");
+        console.log("클래스네임 : " + list.className);
+        console.log("클래스 리스트 : " + list.classList);
+
+        list.className = "spottedSeal";
+        console.log("클래스 리스트 : " + list.classList);
+        // console.log(list.classList);
+
+        const btn = document.querySelector("button");
+        btn.addEventListener("click", function () {
+          console.log(list.style.fontSize); // style 객체는 인라인 스타일만 접근가능.
+
+          const computedStyle = getComputedStyle(list);
+
+          list.classList = "pad100 size30";
+          console.log(computedStyle.fontSize);
+        });
+
+        // for (let item of list.children) {
+        //   item.addEventListener("click", function (event) {
+        //     // if (event.target.classList.contains("line-through")) {
+        //     //   event.target.classList.remove("line-through");
+        //     // } else {
+        //     //   event.target.classList.add("line-through");
+        //     // }
+        //     event.target.classList.toggle("line-through");
+        //   });
+        // }
+
+        list.addEventListener("click", function (event) {
+          console.log(event.target);
+          console.log(event.currentTarget);
+          if (event.target.nodeName === "LI") {
+            event.target.classList.toggle("line-through");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>DOM - class 속성 접근</h1>
+    <button>class 추가</button>
+    <ul class="hello hamster">
+      <li>두부</li>
+      <li>계란</li>
+      <li>콩나물</li>
+    </ul>
+  </body>
+</html>

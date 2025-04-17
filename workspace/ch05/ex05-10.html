@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+    <style>
+      form,
+      div,
+      p {
+        margin: 10px;
+        border: 1px solid blue;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const div = document.querySelector("div");
+        const p = document.querySelector("p");
+
+        form.addEventListener(
+          "click",
+          function (event) {
+            console.log("form 클릭");
+          },
+          true
+        ); // false가 생략한 기본값과 같음 버블링 단계에 캐치하겠다는 의~미 , ture는 캡쳐링으로 캐치하겠다는뜻..
+
+        div.addEventListener(
+          "click",
+          function (event) {
+            console.log(" div 클릭");
+            // event.stopPropagation(); // 이벤트 전파를 중지하겠다
+          },
+          true
+        );
+
+        p.addEventListener(
+          "click",
+          function (event) {
+            console.log("   p 클릭");
+            // event.stopPropagation(); // 이벤트 전파를 중지하겠다
+          },
+          true
+        );
+      });
+    </script>
+  </head>
+  <body>
+    <h1>DOM - 버블링과 캡처링</h1>
+    <form>
+      FORM
+      <div>
+        DIV
+        <p>P</p>
+      </div>
+    </form>
+  </body>
+</html>

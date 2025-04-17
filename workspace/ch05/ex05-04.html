@@ -17,19 +17,26 @@
 
       // 이벤트 등록방법 1 : dom레벨 0 (비표준방식)
       btn.onclick = function () {
-        console.log("눌렀음");
+        console.log("눌렀음-1");
       };
       btn.onclick = function () {
-        console.log("눌렀네?");
+        console.log("눌렀네?-2");
       };
 
       // 이벤트 등록방법 3 : dom레벨 2 (표준방식)
       btn.addEventListener("click", function () {
-        console.log("눌렀군");
+        console.log("눌렀군-3");
       });
-      btn.addEventListener("click", function () {
-        console.log("눌렀소");
-      });
+
+      btn.addEventListener("click", handleClick);
+
+      setTimeout(function () {
+        btn.removeEventListener("click", handleClick);
+      }, 1000 * 3);
+
+      function handleClick() {
+        console.log("눌렀소-4");
+      }
     </script>
   </body>
 </html>

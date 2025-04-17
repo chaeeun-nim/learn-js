@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const smile = document.querySelector("span");
+        setTimeout(function () {
+          smile.style.left = "225px";
+          smile.style.top = "40px";
+        }, 1000);
+        console.log(smile.style.left);
+
+        document.addEventListener("mousemove", function (event) {
+          const x = event.clientX - smile.clientWidth;
+          const y = event.clientY - smile.clientHeight;
+          smile.style.cssText = `position:fixed; left:${x}px; top:${y}px; font-size:${
+            x / 5
+          }px`;
+
+          // smile.style.left = `${x}px`;
+          // smile.style.top = `${y}px`;
+          // smile.style.fontSize = `${x / 5}px`;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>DOM - style 속성 접근</h1>
+    <span
+      style="
+        position: fixed;
+        left: 26px;
+        top: 26px;
+        font-size: 30px;
+        /* transition: all 2s ease-in-out; */
+      "
+      >🦭</span
+    >
+  </body>
+</html>
