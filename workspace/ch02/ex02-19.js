@@ -31,4 +31,5 @@ console.log(rara.age, rara.getName());
 console.log(kkungPing.age, kkungPing.getName());
 console.log(copyPing.age, copyPing.getName());
 console.log(baro);
+console.log(kkungPing.name);
 // console.log(Ping());
