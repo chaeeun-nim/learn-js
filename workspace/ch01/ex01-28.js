@@ -31,12 +31,19 @@ let arr = {
    * @param {*} elem - 추가할 요소
    */
   push: function (elem) {
-    arr[arr.length] = elem;
-    arr.length += 1;
+    // this[this.length] = elem;
+    // this.length += 1;
+    // 배열의 push메서드를 사용해보자!
+    // var tmpArr = new Array();
+    // tmpArr.push.call(this, elem);
+    // TODO prototype배운 후에~
+    // 배열의 모든 메서드는 배열의 생성자 함수인 Array.prototype 속성에 정의되어있다.
+    Array.prototype.push.call(this, elem);
   },
 };
 arr.push("black");
 arr.push("white");
 printArr(arr);
-
+console.log(arr);
+console.log(arr.length);
 // printArr("이것은 문자열");
