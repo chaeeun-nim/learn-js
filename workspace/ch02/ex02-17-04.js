@@ -3,16 +3,22 @@
 */
 
 var count = 0;
+
 const myObj = {
   count: 0,
   visit: function () {
     // 방문자를 한명 증가시킨다.
     this.count++;
 
-    var visit2 = function () {
-      this.count++;
+    var visitN = function (n) {
+      this.count += n;
     };
-    visit2();
+    visitN.call(this, 2);
+    // visitN.call(this, 2);
+
+    const visit3 = visitN.bind(this, 3);
+    visit3();
+    // visit3();
   },
 };
 

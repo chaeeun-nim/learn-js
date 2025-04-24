@@ -14,7 +14,7 @@ const User = function (name) {
 };
 
 User.prototype.setName = function (name) {
-  return (this.name = name);
+  this.name = name;
 };
 User.prototype.getName = function () {
   return this.name;
@@ -28,5 +28,5 @@ console.log(namu.getName()); // 나무핑
 haru.setName("이틀핑");
 console.log(haru.getName()); // 이틀핑
 
-console.log(haru.getName == namu.getName); // true
-console.log(haru.setName == namu.setName); // true
+console.log(haru.getName === namu.getName); // true
+console.log(haru.setName === namu.setName); // true

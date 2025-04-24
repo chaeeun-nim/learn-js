@@ -1,4 +1,67 @@
 /*
-* 클래스 정의와 상속
-* ex03-05.js 복사
-*/
+ * 클래스 정의와 상속
+ * ex03-05.js 복사
+ */
+/*
+ * 프로토타입 체인을 이용한 상속 기능 구현(중계 함수 추가)
+ * ex03-04.js 복사
+ */
+
+/*
+ * 프로토타입 체인을 이용한 상속 기능 구현
+ */
+
+/**
+ * 고등학교 성적관리 생성자 함수(총점과 평균 계산)
+ * @param {number} kor 국어 점수
+ * @param {number} eng 영어 점수
+ */
+class HighSchool {
+  constructor(kor, eng) {
+    this.kor = kor;
+    this.eng = eng;
+  }
+  sum() {
+    return this.kor + this.eng;
+  }
+  avg() {
+    return Math.round(this.sum() / 2);
+  }
+}
+
+const s1 = new HighSchool(100, 91);
+console.log(s1.sum());
+console.log(s1.avg());
+
+/**
+ * 대학교 성적관리 생성자 함수(총점, 평균과 학점 계산)
+ * @param {number} kor 국어 점수
+ * @param {number} eng 영어 점수
+ */
+class College extends HighSchool {
+  constructor(kor, eng) {
+    super(kor, eng);
+  }
+  grade() {
+    let scroe = "A";
+    if (this.avg() >= 90) {
+      scroe = "A";
+    } else if (this.avg() >= 80) {
+      scroe = "B";
+    } else if (this.avg() >= 70) {
+      scroe = "C";
+    } else if (this.avg() >= 60) {
+      scroe = "D";
+    } else {
+      scroe = "F";
+    }
+    return scroe;
+  }
+}
+
+const c1 = new College(80, 99);
+console.log(c1.sum()); //151
+console.log(c1.avg()); //75.5
+console.log(c1.grade()); //C
+
+console.log(College.prototype);
