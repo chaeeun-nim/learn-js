@@ -37,17 +37,17 @@ function College(kor, eng) {
   HighSchool.call(this, kor, eng);
 }
 
-inherite(HighSchool, College);
+mylib.inherite(HighSchool, College);
 
-// Child가 Parent를 상속 받는다.
-function inherite(Parent, Child) {
-  // const F = new Function();
-  // F.prototype = Parent.prototype;
-  // Child.prototype = new F();
+// // Child가 Parent를 상속 받는다.
+// function inherite(Parent, Child) {
+//   // const F = new Function();
+//   // F.prototype = Parent.prototype;
+//   // Child.prototype = new F();
 
-  Child.prototype = Object.create(parent.prototype);
-  Child.prototype.constructor = Child;
-}
+//   Child.prototype = Object.create(parent.prototype);
+//   Child.prototype.constructor = Child;
+// }
 
 College.prototype.grade = function () {
   let scroe = "A";

@@ -1,18 +1,18 @@
 // 지정한 수가 소수인지 여부를 반환
 
 // 함수에 메모이제이션 기능 추가
-Function.prototype.memo = function (key) {
-  // this = isPrime
-  // 캐시를 위한 코드
-  this._cache = this._cache || {};
-  if (this._cache[key] !== undefined) {
-    //한번이라도 num에 대해서 계산이 끝나고 캐시된경우
-    return this._cache[key];
-  } else {
-    // 캐시를 위한 코드
-    return (this._cache[key] = this(key));
-  }
-};
+// Function.prototype.memo = function (key) {
+//   // this = isPrime
+//   // 캐시를 위한 코드
+//   this._cache = this._cache || {};
+//   if (this._cache[key] !== undefined) {
+//     //한번이라도 num에 대해서 계산이 끝나고 캐시된경우
+//     return this._cache[key];
+//   } else {
+//     // 캐시를 위한 코드
+//     return (this._cache[key] = this(key));
+//   }
+// };
 
 var isPrime = function (num) {
   // 소수 판별 코드
