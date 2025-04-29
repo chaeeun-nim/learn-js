@@ -19,5 +19,9 @@
   let userName2: unknown = "Typescript";
 
   console.log(userName.toUpperCase());
-  // console.log(userName2.toUpperCase());
+
+  if (typeof userName2 === "string") {
+    //이렇게 이프문으로 넣어주면 에러없이 더욱 안전하게 사용가능ㅋ
+    console.log(userName2.toUpperCase());
+  }
 })();

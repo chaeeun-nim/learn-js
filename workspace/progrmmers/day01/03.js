@@ -19,6 +19,15 @@ string 5
 stringstringstringstringstring
 */
 
+function getRepeat(str, num) {
+  let result = "";
+  for (let i = 0; i < num; i++) {
+    // 0,1,2,3,4 => 어쨌거나 저쨌거나 5번임
+    result += str;
+  }
+  console.log(result);
+}
+
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
@@ -32,11 +41,12 @@ rl.on("line", function (line) {
 }).on("close", function () {
   str = input[0];
   n = Number(input[1]);
+  getRepeat(str, n);
 
-  let result = "";
-  for (let i = 0; i < n; i++) {
-    // 0,1,2,3,4 => 어쨌거나 저쨌거나 5번임
-    result += str;
-  }
-  console.log(result);
+  // let result = "";
+  // for (let i = 0; i < n; i++) {
+  //   // 0,1,2,3,4 => 어쨌거나 저쨌거나 5번임
+  //   result += str;
+  // }
+  // console.log(result);
 });
