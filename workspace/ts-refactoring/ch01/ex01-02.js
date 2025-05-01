@@ -1,1 +1,5 @@
-console.log('외부 스크립트 로딩');
+"use strict";
+(() => {
+    const text = "햄스터";
+    console.log(text);
+})();

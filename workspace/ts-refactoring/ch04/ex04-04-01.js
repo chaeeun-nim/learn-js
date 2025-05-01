@@ -1,3 +1,4 @@
-const sum = function(x, y, z){
-  return x + y + z;
-}
+"use strict";
+const sum = function (x, y, z) {
+    return x + y + z;
+};
