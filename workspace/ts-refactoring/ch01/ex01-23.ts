@@ -1,10 +1,25 @@
-/*
+(() => {
+  /*
 TODO Object 생성자 함수
 new Object() - 생성자 함수로 객체 생성
 */
 
+type User = {
+  name : string,
+  job : string,
+  age : number,
+  married : boolean;
+}
+
+
 // Object 생성자 함수를 사용하여 새로운 객체 생성
-const foo = new Object();
+const foo : User  = {
+  age:688,
+  name : '핑핑이',
+  job : '마법사',
+  married:true
+};
+
 
 // 객체에 속성 추가 방법 1: 점 표기법(dot notation)
 foo.name = '함수핑';
@@ -21,3 +36,4 @@ console.log(foo['name'], foo['age'], foo.job, foo.married);
 // 객체의 타입과 전체 객체 출력
 console.log(typeof foo, foo);
 // 출력: object { name: '함수핑', age: 6, job: '마법사', married: false }
+})();
